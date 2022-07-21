@@ -20,7 +20,7 @@ class ConfigMap {
   public port = 1667;
   @hydrate((v) => v === "true")
   public debug = false;
-  
+
   public nested: NestedConfig = dconf(NestedConfig);
 }
 

@@ -1,7 +1,7 @@
-import { dconfConfigSymbol, DConfOptions, Instanciable } from "./types.ts";
+import { dconfConfigSymbol, DConfOptions, Instantiable } from "./types.ts";
 
 function pushToConfigurationKey(
-  target: Instanciable,
+  target: Instantiable,
   key: keyof DConfOptions,
   value: DConfOptions[keyof DConfOptions],
 ) {
@@ -13,19 +13,19 @@ function pushToConfigurationKey(
 }
 
 export function hydrationConfig(config: DConfOptions) {
-  return function decorator(constructor: Instanciable) {
+  return function decorator(constructor: Instantiable) {
     Reflect.defineMetadata(dconfConfigSymbol, config, constructor);
   };
 }
 
 export function hydrationPrefixEnv(prefix: string) {
-  return function decorator(constructor: Instanciable) {
+  return function decorator(constructor: Instantiable) {
     pushToConfigurationKey(constructor, "prefixEnv", prefix);
   };
 }
 
 export function hydrationPrefixCLI(prefix: string) {
-  return function decorator(constructor: Instanciable) {
+  return function decorator(constructor: Instantiable) {
     pushToConfigurationKey(constructor, "prefixCli", prefix);
   };
 }

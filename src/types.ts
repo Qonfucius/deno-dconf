@@ -27,7 +27,7 @@ export interface DConfOptions {
 }
 
 // deno-lint-ignore ban-types
-export type Instanciable = new () => object;
+export type Instantiable<T = object> = new () => T;
 
 export const dconfConfigSymbol = Symbol("dconf config");
 export const dconfDataSymbol = Symbol("dconf data");

@@ -4,7 +4,7 @@ import {
   dconfDataSymbol,
   DConfOptions,
   FetchInformation,
-  Instanciable,
+  Instantiable,
   Source,
 } from "./types.ts";
 
@@ -72,7 +72,7 @@ function proxyHandler<T extends Record<string | symbol, any>>(
   };
 }
 
-export const dconf = (
-  CMap: Instanciable,
+export const dconf = <T extends Instantiable>(
+  CMap: T,
   resolutionOrder: Source[] = defaultResolutionOrder,
-) => new Proxy(new CMap(), proxyHandler<typeof CMap>(resolutionOrder));
+) => new Proxy(new CMap(), proxyHandler<T>(resolutionOrder)) as InstanceType<T>;
